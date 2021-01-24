@@ -51,3 +51,5 @@ class Server:
             data = json.loads(raw)
             self._private_voice_category = data['_private_voice_category']
             self._private_voice_creation_channel = data['_private_voice_creation_channel']
+        else:
+            self.updateDB()
