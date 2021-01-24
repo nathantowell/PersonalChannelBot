@@ -46,8 +46,8 @@ class Server:
         redis.set('server:' + str(self._guild), self.toJSON())
     
     def retrieveDB(self):
-        if redis.exists('server:' + str(self._guild)) is False:
-            return
-        data = json.loads(redis.get('server:' + str(self._guild)))
-        self._private_voice_category = data['_private_voice_category']
-        self._private_voice_creation_channel = data['_private_voice_creation_channel']
+        raw = redis.get('server:' + str(self._guild))
+        if raw is not None:
+            data = json.loads(raw)
+            self._private_voice_category = data['_private_voice_category']
+            self._private_voice_creation_channel = data['_private_voice_creation_channel']
