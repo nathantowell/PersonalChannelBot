@@ -1,11 +1,10 @@
-FROM python:alpine
+FROM python:slim
 
-WORKDIR /app
+COPY requirements.txt .
 
-COPY requirements.txt
-
+RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-COPY src/.
+COPY src/ .
 
 CMD [ "python", "./run.py" ]
