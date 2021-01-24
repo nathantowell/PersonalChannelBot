@@ -8,12 +8,13 @@ The bot requires the following environment variables to be set, they're pretty s
 ```
 # Optional
 docker run -itd -p 127.0.0.1:6379:6379 --name=bot-redis redis:latest
+
 # Create Bot
 docker run -itd \
     -e DISCORD_TOKEN="<your bot token>" \
-	-e REDIS_HOST="127.0.0.1" \
-	-e REDIS_PORT="6379" \
+    -e REDIS_HOST="127.0.0.1" \
+    -e REDIS_PORT="6379" \
     --net host \
-	--name SomeBot \
-	nathantowell/personal-channel-bot:latest
+    --name SomeBot \
+    nathantowell/personal-channel-bot:latest
 ```
