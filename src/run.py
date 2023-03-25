@@ -9,7 +9,7 @@ async def on_ready():
     await client.change_presence(activity=discord.Activity(name='your back!', type=discord.ActivityType.watching))
     #await client.change_presence(activity=discord.CustomActivity(name='Handling My Business!', emoji='<a:Tail_Wag:711971800157913088>'), status=discord.Status.dnd)
     print('Logged on as', client.user)
-    
+
 
 @client.event
 async def on_guild_available(guild):
@@ -30,10 +30,10 @@ async def on_voice_state_update(member, before, after):
 
     if after.channel is not None:
         if after.channel.id == server.private_voice_creation_channel:
-            channel = await after.channel.guild.create_voice_channel(name =  f'{member.name}\'s Channel', overwrites=None, category=after.channel.category, reason=None)
+            channel = await after.channel.guild.create_voice_channel(name =  f'{member.name}\'s Channel', overwrites={}, category=after.channel.category, reason=None)
             await channel.set_permissions(member, manage_channels=True, move_members=True, view_channel=True, connect=True)
             await member.move_to(channel)
-    
+
     if before.channel is not None:
         if before.channel.category_id is not None and before.channel.category_id == server.private_voice_category:
             if before.channel.id != server.private_voice_creation_channel:
